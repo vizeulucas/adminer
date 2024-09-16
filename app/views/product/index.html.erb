@@ -1,0 +1,15 @@
+<div class="container">
+    <header>
+        <h1>Produtos</h1>
+        <%= form_with url: "/search", method: :get do |form| %>
+            <%= form.label :query, "Buscar por:" %>
+            <%= form.select :search_by, [["Id", "product_id"], ["Titulo", "title"], ["Vendor", "vendor"], ["Tipo", "product_type"]], class: "search-by" %>
+            <%= form.text_field :query, placeholder: "Texto...", class: "search-field" %>
+            <%= form.submit "Search", class: "submit-btn" %>
+        <% end %>
+    </header>
+    <%= render "product_table" %>
+    <div class="new-container">
+        <a href="/product/new" class="create-btn"> Adicionar uma Url </a>
+    </div>
+</div>

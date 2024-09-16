@@ -1,0 +1,43 @@
+<div class="table-area">
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th scope="col">Id</th>
+                <th scope="col">Título</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Vendor</th>
+                <th scope="col">Url</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @products.each_with_index do |product, index| %>
+            <tr class="product-row">
+                <td><%= index+1 %></td>
+                <td><%= link_to "#{product.product_id}", "/product/#{product.product_id}" %></td>
+                <td class="title"><%= product.title %></td>
+                <td><%= product.product_type %></td>
+                <td><%= product.vendor %></td>
+                <td><%= product.product_url.url %></td>
+            </tr>
+        <% end %>
+        </tbody>
+    </table>
+    <div class="pagination-container">
+        <% if @products.first_page? %>
+        <div class="wrapper">
+            <a class="deactivated btn-pagination btn-back">Voltar</a>
+        </div>
+        <% else %>
+        <a <%= %(href=?page_number=#{@products.prev_page}) %> class="btn-pagination btn-back">Voltar</a>
+        <% end %>
+        <span><%= @products.current_page %>/<%= @products.total_pages %><span>
+        <% if @products.last_page? %>
+        <div class="wrapper">
+            <a class="deactivated btn-pagination btn-next">Avançar</a>
+        </div>
+        <% else %>
+        <a <%= %(href=?page_number=#{@products.next_page}) %> class="btn-pagination btn-next">Avançar</a>
+        <% end %>
+    </div>
+</div>

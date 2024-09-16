@@ -1,0 +1,13 @@
+<div class="container">
+    <header>
+        <h1>Novo Produto</h1>
+    </header>
+    
+    <div class="new-url-container">
+        <%= form_with url: "/product/create", method: :post do |form| %>
+            <%= form.label :url, "URL:" %>
+            <%= form.text_field :query, placeholder: "https://...", class: "url-input" %>
+            <%= form.submit "Adicionar Produto", class: "url-submit" %>
+        <% end %>
+    </div>
+</div>
