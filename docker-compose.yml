@@ -1,0 +1,18 @@
+services:
+  db:
+    image: mongo
+    restart: always
+    command: --port 27017
+    ports:
+      - "27017:27017"
+  
+  web:
+    depends_on:
+      - db
+    build: ./watchman
+    ports:
+      - "3000:3000"
+    volumes:
+      - ".:/app"
+    links:
+      - "db"

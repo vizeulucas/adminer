@@ -39,6 +39,7 @@ class ProductController < ApplicationController
 
   def destroy
     prod = Product.where(:id => params[:id]).first
+    prod.product_tag.each { |tag| tag.delete }
     prod.product_url.delete
     prod.delete
     redirect_to :controller => 'product', :action => "index"
